@@ -17,17 +17,31 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: black;
+  background: white;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.nav__link {
+  @apply py-8 px-[18px] relative transition;
+
+  &:first-child {
+    border-bottom: 4px solid #ff000d;
+  }
+
+  // &:hover {
+  //   border-bottom: 4px solid #ff000d;
+  // }
+}
+
+.hero {
+  background-image: url("/hero-bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
