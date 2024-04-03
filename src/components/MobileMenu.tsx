@@ -1,34 +1,59 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
 import Logo from "./Logo";
-import MobileMenu from "./MobileMenu";
 
-const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+interface MobileMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
+const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
   return (
-    <>
-      <nav className="fixed w-full bg-white z-50 py-5 md:py-0">
-        <div className="container flex items-center justify-between">
-          <Logo />
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: "0%" }}
+          exit={{ x: "100%" }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="fixed h-screen w-screen bg-white top-0 left-0 z-50 block md:hidden container py-5"
+        >
+          <div className="flex items-center justify-between">
+            <Logo />
 
-          <ul className="uppercase text-sm font-medium tracking-[0.7px] items-center gap-2 hidden md:flex">
-            <li className="nav__link">
+            <button
+              className="w-8 h-8 flex items-center justify-center"
+              onClick={onClose}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                fill="#000000"
+                viewBox="0 0 256 256"
+              >
+                <path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" />
+              </svg>
+            </button>
+          </div>
+
+          <ul className="uppercase text-xl font-medium tracking-[0.7px] flex flex-col gap-10 pt-24">
+            <li onClick={onClose}>
               <Link href={"/"}>HOME</Link>
             </li>
-            <li className="nav__link">
+            <li onClick={onClose}>
               <Link href={"/"}>Peace advantage</Link>
             </li>
-            <li className="nav__link">
+            <li onClick={onClose}>
               <Link href={"/"}>careers</Link>
             </li>
-            <li className="nav__link">
+            <li onClick={onClose}>
               <Link href={"/"}>inflight magazine</Link>
             </li>
 
-            <li className="nav__link">
+            <li onClick={onClose}>
               <Link href={"/"} className="flex items-center leading-[0px]">
                 More{" "}
                 <svg
@@ -59,7 +84,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li className="nav__link">
+            <li onClick={onClose}>
               <Link href={"/"} className="flex items-center gap-1">
                 Login{" "}
                 <svg
@@ -90,33 +115,10 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-
-          <button
-            className="md:hidden w-8 h-8 flex items-center justify-center"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <svg
-              width={24}
-              height={24}
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"
-                fill="black"
-              />
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      />
-    </>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
-export default Navbar;
+export default MobileMenu;

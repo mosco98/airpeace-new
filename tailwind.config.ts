@@ -10,7 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       container: {
-        center: true
+        center: true,
+        padding: {
+          DEFAULT: "1.5rem"
+        }
       },
       fontFamily: {
         fraunces: ["var(--font-fraunces)", ...fontFamily.sans]
