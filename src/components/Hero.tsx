@@ -1,16 +1,8 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 const Hero = () => {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.15, ease: "easeInOut" }}
-      className="hero pt-6 pb-36 relative overflow-x-hidden"
-    >
+    <section className="hero pt-6 pb-36 relative overflow-x-hidden">
       <div className="container z-40 relative">
         <div
           className="text-[13px] font-semibold w-fit flex items-center gap-8 bg-red-500 mx-auto backdrop-blur-[25px] p-3 rounded-[64px]"
@@ -2113,7 +2105,7 @@ const Hero = () => {
         alt="plane-mockup"
         className="absolute top-40 -right-[45%]"
       />
-    </motion.section>
+    </section>
   );
 };
 
