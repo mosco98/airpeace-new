@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useEffect } from "react";
 import Logo from "./Logo";
 
 interface MobileMenuProps {
@@ -10,6 +11,10 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+  useEffect(() => {
+    document.body.style.overflow = !isOpen ? "unset" : "hidden";
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
